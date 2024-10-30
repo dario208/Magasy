@@ -1,4 +1,4 @@
-# Projet de Gestion de Stock / E-commerce
+# MAGASY
 
 ## Description
 
@@ -21,7 +21,7 @@ L'application est construite avec une architecture back-end et front-end sépar�
 
 - **Backend** : FastAPI (API REST), SQLAlchemy (gestion des données)
 - **Frontend** : React.js
-- **Base de données** : PostgreSQL (ou autre SGBD relationnel)
+- **Base de données** : PostgreSQL 
 - **Gestion de conteneurs** : Docker et Docker Compose pour faciliter le déploiement
 - **Authentification** : JWT ou OAuth pour sécuriser l'accès
 
