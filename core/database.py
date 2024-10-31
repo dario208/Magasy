@@ -1,7 +1,8 @@
 from sqlmodel import SQLModel, create_engine, Session
 from core.config import DATABASE_URL
 import psycopg2
-from fastapi import Depends, Annotated
+from typing import Annotated
+from fastapi import Depends
 engine = create_engine(DATABASE_URL)
 
 def init_db():

@@ -27,7 +27,8 @@ class User(SQLModel, table=True):
     __table_args__ = (Index("idx_user_email", "email", unique=True),)
 
     id: Optional[int] = Field(default=None, primary_key=True)
-    name: str
+    first_name: str
+    last_name: str
     email: str = Field(nullable=False)
     password: str
     role: RoleEnum
