@@ -3,9 +3,18 @@ from typing import List, Optional
 from sqlalchemy.orm import Session
 from models.models import User
 from passlib.context import CryptContext
+from core.database import get_session
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+logger = logging.getLogger(__name__)
 
+
+def get_db():
+    db = get_session()
+    try:
+        yield db
+    finally:
+        db.close()
 
 class UserBase(BaseModel):
     email: EmailStr

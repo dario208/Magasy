@@ -1,3 +1,6 @@
 {
-  "conventionalCommits.scopes": ["feat: create table for database"]
+  "conventionalCommits.scopes": [
+    "feat: create table for database",
+    "add new services db"
+  ]
 }
