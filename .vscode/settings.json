@@ -1,6 +1,12 @@
 {
   "conventionalCommits.scopes": [
-    "feat: create table for database",
-    "add new services db"
+    "ui",
+    "database",
+    "auth",
+    "config",
+    "api",
+    "lang",
+    "setting.json",
+    "test"
   ]
 }
