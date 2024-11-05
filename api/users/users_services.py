@@ -9,12 +9,12 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 logger = logging.getLogger(__name__)
 
 
-def get_db():
-    db = get_session()
-    try:
-        yield db
-    finally:
-        db.close()
+# def get_db():
+#     db = get_session()
+#     try:
+#         yield db
+#     finally:
+#         db.close()
 
 class UserBase(BaseModel):
     email: EmailStr
