@@ -1,6 +1,77 @@
 {
-  "conventionalCommits.scopes": [
-    "feat: create table for database",
-    "add new services db"
+  "conventionalCommits": [
+    {
+      "type": "feat",
+      "scope": "database",
+      "description": "create table for database",
+      "message": "feat(database): create table for database"
+    },
+    {
+      "type": "feat",
+      "description": "allow provided config object to extend other configs",
+      "message": "feat: allow provided config object to extend other configs",
+      "footer": "BREAKING CHANGE: 'extends' key in config file is now used for extending other config files."
+    },
+    {
+      "type": "feat",
+      "breaking": true,
+      "description": "send an email to the customer when a product is shipped",
+      "message": "feat!: send an email to the customer when a product is shipped"
+    },
+    {
+      "type": "feat",
+      "scope": "api",
+      "breaking": true,
+      "description": "send an email to the customer when a product is shipped",
+      "message": "feat(api)!: send an email to the customer when a product is shipped"
+    },
+    {
+      "type": "chore",
+      "breaking": true,
+      "description": "drop support for Node 6",
+      "message": "chore!: drop support for Node 6",
+      "footer": "BREAKING CHANGE: use JavaScript features not available in Node 6."
+    },
+    {
+      "type": "docs",
+      "description": "correct spelling of CHANGELOG",
+      "message": "docs: correct spelling of CHANGELOG"
+    },
+    {
+      "type": "feat",
+      "scope": "lang",
+      "description": "add Polish language",
+      "message": "feat(lang): add Polish language"
+    },
+    {
+      "type": "fix",
+      "description": "prevent racing of requests",
+      "body": "Introduce a request id and a reference to latest request. Dismiss incoming responses other than from the latest request.\n\nRemove timeouts which were used to mitigate the racing issue but are obsolete now.",
+      "footer": "Reviewed-by: Z\nRefs: #123",
+      "message": "fix: prevent racing of requests"
+    },
+    {
+      "type": "fix",
+      "scope": "ui",
+      "description": "resolve issue with dropdown menu alignment",
+      "body": "The dropdown menu was misaligned on the profile page due to CSS conflicts.\nUpdated the styles to ensure proper alignment across different screen sizes.",
+      "footer": "Fixes issue #789",
+      "message": "fix(ui): resolve issue with dropdown menu alignment"
+    },
+    {
+      "type": "test",
+      "description": "add unit tests for user authentication module",
+      "body": "Added unit tests for the user authentication module to cover login, registration, and token verification functionalities.\nEnsured all tests pass with the new authentication logic.",
+      "footer": "Refs: #456",
+      "message": "test: add unit tests for user authentication module"
+    },
+    {
+      "type": "chore",
+      "scope": "config",
+      "description": "update ESLint configuration to support latest standards",
+      "body": "Updated the ESLint configuration to support the latest JavaScript standards and best practices.\nIncluded new rules for code formatting and improved error detection.",
+      "footer": "Reviewed-by: A, B",
+      "message": "chore(config): update ESLint configuration to support latest standards"
+    }
   ]
 }
