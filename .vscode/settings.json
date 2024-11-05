@@ -4,7 +4,7 @@
     "database",
     "auth",
     "config",
-    "api",
+    "api: crud operations",
     "lang",
     "setting.json",
     "test"
