@@ -5,8 +5,8 @@ app = FastAPI()
 
 
 @app.on_event("startup")
-def on_startup():
-    init_db()
+async def on_startup():
+    await init_db()
     session = next(get_session())
     
 app.include_router(routers)
