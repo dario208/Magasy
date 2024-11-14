@@ -4,9 +4,9 @@ from api.routes.routes import routers
 app = FastAPI()
 
 
-# @app.on_event("startup")
-# def on_startup():
-#     init_db()
-#     session = next(get_session())
+@app.on_event("startup")
+async def on_startup():
+    await init_db()
+    session = next(get_session())
     
 app.include_router(routers)
