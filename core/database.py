@@ -4,7 +4,7 @@ import psycopg2
 from typing import Annotated
 from fastapi import Depends
 engine = create_engine(DATABASE_URL)
-def init_db():
+async def init_db():
     SQLModel.metadata.create_all(engine)
 
 def get_session():
@@ -12,4 +12,4 @@ def get_session():
         yield session
 
 SessionDep = Annotated[Session, Depends(get_session)]
-
+Sessionlocal = Annotated[Session, Depends(get_session)]

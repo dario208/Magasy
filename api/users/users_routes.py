@@ -1,14 +1,14 @@
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
 from api.users.users_services import (  # Assuming users_services.py is in the same directory
-     UserBase, UserCreate, get_users, create_user, get_db
+     UserBase, UserCreate, get_users, create_user, get_db, UserUpdate, update_user
 )
 from sqlalchemy.orm import Session
 
 router = APIRouter()
 
 
-@router.get("/users", response_model=List[UserBase])
+@router.get("/get", response_model=List[UserBase])
 async def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     """
     Retrieves a list of users with pagination (optional `skip` and `limit` parameters).
@@ -23,7 +23,7 @@ async def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
 
 
-@router.post("/users", response_model=UserBase)
+@router.post("/create", response_model=UserBase)
 async def create_user_route(user_create: UserCreate, db: Session = Depends(get_db)):
     """
     Creates a new user in the database.
@@ -33,6 +33,19 @@ async def create_user_route(user_create: UserCreate, db: Session = Depends(get_d
     """
     try:
         user = create_user(db, user_create)
+        return user
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+@router.put("/update", response_model=UserBase)
+async def update_user_route(user_update: UserUpdate, db: Session = Depends(get_db)):
+    """
+    Updates an existing user in the database.
+
+    Raises:
+        HTTPException: If an error occurs during database access.
+    """
+    try:
+        user = update_user(db, user_update)
         return user
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
