@@ -58,11 +58,26 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
 
 
 def update_user(db: Session, user_id: int, user_update: UserUpdate):
+    # db_user = db.query(User).filter(User.id == user_id).first()
+    # if db_user:
+    #     db_user.first_name = user_update.first_name
+    #     db_user.last_name = user_update.last_name
+    #     db_user.role = user_update.role.value  # Convertir l'énumération en chaîne de caractères
+    #     db.commit()
+    #     db.refresh(db_user)
+    # return db_user
     db_user = db.query(User).filter(User.id == user_id).first()
-    if db_user:
-        db_user.first_name = user_update.first_name
-        db_user.last_name = user_update.last_name
-        db_user.role = user_update.role.value  # Convertir l'énumération en chaîne de caractères
-        db.commit()
-        db.refresh(db_user)
-    return db_user
+    if not db_user:
+        return None
+
+    if user_update.email:
+        db_user.email = user_update.email
+
+    # Update password if provided
+    if user_update.password:
+        db_user.password = pwd_context.hash(user_update.password)
+    
+    db.commit()
+    db.refresh(db_user)
+    
+    return {"id": user_id, "email": db_user.email}

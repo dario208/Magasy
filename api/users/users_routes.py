@@ -44,8 +44,8 @@ async def update_user_route(user_update: UserUpdate, db: Session = Depends(get_d
     Raises:
         HTTPException: If an error occurs during database access.
     """
-    try:
-        user = update_user(db, user_update)
-        return user
-    except Exception as e:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+    user = db.query(UserBase).filter(UserBase.id == user_update.id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    updated_user = update_user(db, user_update)
+    return updated_user
